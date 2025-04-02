@@ -8,11 +8,11 @@ spec:
   replicas: 6
   selector:
     matchLabels:
-      app: pizza
+      app: cal
   template:
     metadata:
       labels:
-        app: pizza
+        app: cal
     spec:
       containers:
       - name: cal-app-container
