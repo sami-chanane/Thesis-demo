@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: <DEPLOYMENT_NAME>
   labels:
-    app: cal
+    app: cal-dep
 spec:
   replicas: 6
   selector:
