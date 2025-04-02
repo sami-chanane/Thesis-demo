@@ -14,8 +14,8 @@
         <div class="button-container">
             <button onclick="displayResult(add)">Add</button>
             <button onclick="displayResult(subtract)">Subtract</button>
-            <button onclick="displayResult(multiply)">Multiply</button>
-            <button onclick="displayResult(divide)">Divide</button>
+            <!-- <button onclick="displayResult(multiply)">Multiply</button> -->
+            <!-- <button onclick="displayResult(divide)">Divide</button> -->
         </div>
         <div id="result"></div>
     </div>
@@ -38,13 +38,13 @@
                 return a - b;
             }
 
-            function multiply(a, b) {
-                return a * b;
-            }
+            // function multiply(a, b) {
+            //     return a * b;
+            // }
 
-            function divide(a, b) {
-                return b !== 0 ? a / b : "Cannot divide by zero";
-            }
+            // function divide(a, b) {
+            //     return b !== 0 ? a / b : "Cannot divide by zero";
+            // }
 
             function displayResult(operation) {
                 const numbers = getNumbers();
