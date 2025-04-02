@@ -67,10 +67,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-      - name: Test Application   # image tag does not matter because the image will be deleted when job in completed
-        run: docker buildx build --target test-report --output type=local,dest=$(pwd) .       #--tag ${{ env.IMAGE_REGISTERY }}/${{ env.IMAGE_REPOSITORY }}/${{ env.IMAGE_NAME }}:test
+      - name: run unit tests
+        run: npm test
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v3
+      # - name: Test Application   # image tag does not matter because the image will be deleted when job in completed
+      #   run: docker buildx build --target test-report --output type=local,dest=$(pwd) .       #--tag ${{ env.IMAGE_REGISTERY }}/${{ env.IMAGE_REPOSITORY }}/${{ env.IMAGE_NAME }}:test
 
   Build-Push-Image:
     needs: [Lint-Master, Scan-Repo, Unit-Tests]
