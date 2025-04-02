@@ -3,7 +3,7 @@ kubernetes/cosign.pub
 kubernetes/verify-signature.yaml
 kubernetes/ingress.yaml
 kubernetes-ingress
-pre-commit
+pre-commit.sh
 test-report.txt
 cosign.pub
 
