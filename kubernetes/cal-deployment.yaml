@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <DEPLOYMENT_NAME>
+  labels:
+    app: pizza
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: pizza
+  template:
+    metadata:
+      labels:
+        app: pizza
+    spec:
+      containers:
+      - name: cal-app-container
+        image: <IMAGE>
+        ports:
+        - containerPort: 3000
+          name: cal-app-port

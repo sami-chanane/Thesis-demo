@@ -11,7 +11,7 @@ env:
   IMAGE_REPOSITORY: "${{ github.actor }}"
   IMAGE_NAME: "calculator-app"
   IMAGE_TAG: ${{ github.run_number }}
-  DEPLOYMENT_DEFINITION_PATH: "$GITHUB_WORKSPACE/kubernetes/calculator-deployment.yaml"
+  DEPLOYMENT_DEFINITION_PATH: "$GITHUB_WORKSPACE/kubernetes/cal-deployment.yaml"
   DEPLOYMENT_NAME: "calculator-deployment"
 
 jobs:
