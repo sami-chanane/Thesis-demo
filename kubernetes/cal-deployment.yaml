@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: <DEPLOYMENT_NAME>
   labels:
-    app: pizza
+    app: cal
 spec:
   replicas: 6
   selector:
