@@ -9,10 +9,10 @@ on:
 env:
   IMAGE_REGISTERY: "ghcr.io"
   IMAGE_REPOSITORY: "${{ github.actor }}"
-  IMAGE_NAME: "pizza-app"
+  IMAGE_NAME: "calculator-app"
   IMAGE_TAG: ${{ github.run_number }}
-  DEPLOYMENT_DEFINITION_PATH: "$GITHUB_WORKSPACE/kubernetes/pizza-deployment.yaml"
-  DEPLOYMENT_NAME: "pizza-deployment"
+  DEPLOYMENT_DEFINITION_PATH: "$GITHUB_WORKSPACE/kubernetes/calculator-deployment.yaml"
+  DEPLOYMENT_NAME: "calculator-deployment"
 
 jobs:
 
@@ -70,17 +70,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Test Application   # image tag does not matter because the image will be deleted when job in completed
-        run: docker buildx build --target test-report --output type=local,dest=$(pwd) .                                            #--tag ${{ env.IMAGE_REGISTERY }}/${{ env.IMAGE_REPOSITORY }}/${{ env.IMAGE_NAME }}:test
-      # 
-      - name: test-report-existance
-        run: ls
-      # 
-      # - name: Upload Test Reports
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: test-report-${{ env.IMAGE_TAG }}
-      #     path: |
-      #       test-report.txt
+        run: docker buildx build --target test-report --output type=local,dest=$(pwd) .       #--tag ${{ env.IMAGE_REGISTERY }}/${{ env.IMAGE_REPOSITORY }}/${{ env.IMAGE_NAME }}:test
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report-${{ env.IMAGE_TAG }}
+          path: |
+            test-report.txt
 
   Build-Push-Image:
     needs: [Lint-Master, Scan-Repo, Unit-Tests]
@@ -108,7 +104,7 @@ jobs:
         with:
           context: .
           push: true
-          target: "final-stage"
+          target: "build-stage"
           # platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: ${{ env.IMAGE_REGISTERY }}/${{ env.IMAGE_REPOSITORY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
