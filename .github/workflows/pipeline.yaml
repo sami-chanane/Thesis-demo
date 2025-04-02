@@ -75,8 +75,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-report-${{ env.IMAGE_TAG }}
-          path: |
-            test-report.txt
+          path: ./test-report.txt
 
   Build-Push-Image:
     needs: [Lint-Master, Scan-Repo, Unit-Tests]
